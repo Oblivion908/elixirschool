@@ -175,7 +175,7 @@ defmodule Friends.Movie do
     field :title, :string
     field :tagline, :string
     has_many :characters, Friends.Character
-    has_one :distributor, Friends.Distributor # I'm new!
+    has_one :distributors, Friends.Distributor # I'm new!
   end
 end
 ```
@@ -251,7 +251,7 @@ defmodule Friends.Movie do
     field :title, :string
     field :tagline, :string
     has_many :characters, Friends.Character
-    has_one :distributor, Friends.Distributor
+    has_one :distributors, Friends.Distributor
     many_to_many :actors, Friends.Actor, join_through: "movies_actors" # I'm new!
   end
 end
@@ -339,7 +339,7 @@ Notice that since the `Movie` schema's `has_many/3` macro specifies that a movie
 In order to use `build_assoc/3` to save a movie's associated distributor, we take the same approach of passing the _name_ of the movie's relationship to distributor as the second argument to `build_assoc/3`:
 
 ```elixir
-iex> distributor = Ecto.build_assoc(movie, :distributor, %{name: "Netflix"})
+iex> distributor = Ecto.build_assoc(movie, :distributors, %{name: "Netflix"})
 %Friends.Distributor{
   __meta__: %Ecto.Schema.Metadata<:built, "distributors">,
   id: nil,
